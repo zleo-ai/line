@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - Horus fork
+
+Forked from [Haleclipse/CCometixLine](https://github.com/Haleclipse/CCometixLine) at v1.1.2 and rebranded as **Horus**. History below this section preserves the upstream changelog and remains attributed to the original author.
+
+### Added
+- **Codex usage segment** — new `CodexUsageSegment` reads `~/.codex/sessions/*.jsonl` for primary/secondary rate limits, mirroring the Claude usage flow.
+- **Split Claude usage segments** — original `Usage` is split into `HourlyUsage` (5-hour window) and `WeeklyUsage` (7-day window) with independent display and budget pacing.
+- **Budget pacing calc** — shows consumed-vs-ideal utilization based on elapsed time within each window.
+
+### Changed
+- Rebrand: crate `ccometixline` → `horus`, binary `ccline` → `horus`, npm scope `@cometix/ccline` → `@pure-maple/horus`, default install path `~/.claude/ccline/` → `~/.claude/horus/`.
+
+---
+
 ## [1.1.2] - 2026-03-15
 
 ### Changed

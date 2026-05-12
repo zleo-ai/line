@@ -1,11 +1,11 @@
-# @cometix/ccline
+# @pure-maple/horus
 
-CCometixLine - High-performance Claude Code StatusLine tool
+Horus - High-performance Claude Code StatusLine tool
 
 ## Installation
 
 ```bash
-npm install -g @cometix/ccline
+npm install -g @pure-maple/horus
 ```
 
 ## Features
@@ -18,13 +18,13 @@ npm install -g @cometix/ccline
 
 ## Usage
 
-After installation, ccline is automatically configured for Claude Code at `~/.claude/ccline/ccline`.
+After installation, horus is automatically configured for Claude Code at `~/.claude/horus/horus`.
 
 You can also use it directly:
 
 ```bash
-ccline --help
-ccline --version
+horus --help
+horus --version
 ```
 
 ## For Users in China
@@ -32,11 +32,11 @@ ccline --version
 Use npm mirror for faster installation:
 
 ```bash
-npm install -g @cometix/ccline --registry https://registry.npmmirror.com
+npm install -g @pure-maple/horus --registry https://registry.npmmirror.com
 ```
 
 ## More Information
 
-- GitHub: https://github.com/Haleclipse/CCometixLine
-- Issues: https://github.com/Haleclipse/CCometixLine/issues
+- GitHub: https://github.com/pure-maple/horus
+- Issues: https://github.com/pure-maple/horus/issues
 - License: MIT

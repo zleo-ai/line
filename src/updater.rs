@@ -41,7 +41,7 @@ impl UpdateState {
         let config_dir = dirs::home_dir()
             .unwrap_or_default()
             .join(".claude")
-            .join("ccline");
+            .join("horus");
 
         let state_file = config_dir.join(".update_state.json");
 
@@ -126,7 +126,7 @@ impl UpdateState {
         let config_dir = dirs::home_dir()
             .unwrap_or_default()
             .join(".claude")
-            .join("ccline");
+            .join("horus");
 
         std::fs::create_dir_all(&config_dir)?;
         let state_file = config_dir.join(".update_state.json");
@@ -153,9 +153,9 @@ impl UpdateState {
 
 /// npm registry version check
 mod registry {
-    /// Check @cometix/ccline latest version from npm registry
+    /// Check @pure-maple/horus latest version from npm registry
     pub fn check_for_updates() -> Result<Option<String>, Box<dyn std::error::Error>> {
-        let url = "https://registry.npmjs.org/@cometix/ccline/latest";
+        let url = "https://registry.npmjs.org/@pure-maple/horus/latest";
 
         let response = ureq::get(url).header("Accept", "application/json").call()?;
 

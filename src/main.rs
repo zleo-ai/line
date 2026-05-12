@@ -1,20 +1,20 @@
-use ccometixline::cli::Cli;
-use ccometixline::config::{Config, InputData};
-use ccometixline::core::{collect_all_segments, StatusLineGenerator};
-use ccometixline::ui::{MainMenu, MenuResult};
+use horus::cli::Cli;
+use horus::config::{Config, InputData};
+use horus::core::{collect_all_segments, StatusLineGenerator};
+use horus::ui::{MainMenu, MenuResult};
 use std::io::{self, IsTerminal};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse_args();
 
     if cli.config {
-        ccometixline::ui::run_configurator()?;
+        horus::ui::run_configurator()?;
         return Ok(());
     }
 
     // Handle Claude Code patcher
     if let Some(claude_path) = cli.patch {
-        use ccometixline::utils::ClaudeCodePatcher;
+        use horus::utils::ClaudeCodePatcher;
 
         println!("🔧 Claude Code Context Warning Disabler");
         println!("Target file: {}", claude_path);
@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Apply theme override if provided
     if let Some(theme) = cli.theme {
-        config = ccometixline::ui::themes::ThemePresets::get_theme(&theme);
+        config = horus::ui::themes::ThemePresets::get_theme(&theme);
     }
 
     // Check if stdin has data
@@ -51,7 +51,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if let Some(result) = MainMenu::run()? {
             match result {
                 MenuResult::LaunchConfigurator => {
-                    ccometixline::ui::run_configurator()?;
+                    horus::ui::run_configurator()?;
                 }
                 MenuResult::InitConfig | MenuResult::CheckConfig => {}
                 MenuResult::Exit => {}

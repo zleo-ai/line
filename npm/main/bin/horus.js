@@ -4,12 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-// 1. Priority: Use ~/.claude/ccline/ccline if exists
+// 1. Priority: Use ~/.claude/horus/horus if exists
 const claudePath = path.join(
   os.homedir(), 
   '.claude', 
-  'ccline',
-  process.platform === 'win32' ? 'ccline.exe' : 'ccline'
+  'horus',
+  process.platform === 'win32' ? 'horus.exe' : 'horus'
 );
 
 if (fs.existsSync(claudePath)) {
@@ -77,31 +77,31 @@ if (platform === 'linux') {
 }
 
 const packageMap = {
-  'darwin-x64': '@cometix/ccline-darwin-x64',
-  'darwin-arm64': '@cometix/ccline-darwin-arm64',
-  'linux-x64': '@cometix/ccline-linux-x64',
-  'linux-x64-musl': '@cometix/ccline-linux-x64-musl',
-  'linux-arm64': '@cometix/ccline-linux-arm64',
-  'linux-arm64-musl': '@cometix/ccline-linux-arm64-musl',
-  'win32-x64': '@cometix/ccline-win32-x64',
-  'win32-ia32': '@cometix/ccline-win32-x64', // Use 64-bit for 32-bit systems
+  'darwin-x64': '@pure-maple/horus-darwin-x64',
+  'darwin-arm64': '@pure-maple/horus-darwin-arm64',
+  'linux-x64': '@pure-maple/horus-linux-x64',
+  'linux-x64-musl': '@pure-maple/horus-linux-x64-musl',
+  'linux-arm64': '@pure-maple/horus-linux-arm64',
+  'linux-arm64-musl': '@pure-maple/horus-linux-arm64-musl',
+  'win32-x64': '@pure-maple/horus-win32-x64',
+  'win32-ia32': '@pure-maple/horus-win32-x64', // Use 64-bit for 32-bit systems
 };
 
 const packageName = packageMap[platformKey];
 if (!packageName) {
   console.error(`Error: Unsupported platform ${platformKey}`);
   console.error('Supported platforms: darwin (x64/arm64), linux (x64/arm64), win32 (x64)');
-  console.error('Please visit https://github.com/Haleclipse/CCometixLine for manual installation');
+  console.error('Please visit https://github.com/pure-maple/horus for manual installation');
   process.exit(1);
 }
 
-const binaryName = platform === 'win32' ? 'ccline.exe' : 'ccline';
+const binaryName = platform === 'win32' ? 'horus.exe' : 'horus';
 const binaryPath = path.join(__dirname, '..', 'node_modules', packageName, binaryName);
 
 if (!fs.existsSync(binaryPath)) {
   console.error(`Error: Binary not found at ${binaryPath}`);
   console.error('This might indicate a failed installation or unsupported platform.');
-  console.error('Please try reinstalling: npm install -g @cometix/ccline');
+  console.error('Please try reinstalling: npm install -g @pure-maple/horus');
   console.error(`Expected package: ${packageName}`);
   process.exit(1);
 }

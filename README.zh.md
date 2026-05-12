@@ -1,4 +1,4 @@
-# CCometixLine
+# Horus
 
 [English](README.md) | [中文](README.zh.md)
 
@@ -7,9 +7,11 @@
 ![Language:Rust](https://img.shields.io/static/v1?label=Language&message=Rust&color=orange&style=flat-square)
 ![License:MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=blue&style=flat-square)
 
+> **Fork 自 [Haleclipse/CCometixLine](https://github.com/Haleclipse/CCometixLine)** — 感谢原作者打下的 Rust statusline 基底。Horus 的差异在于：新增 **Codex 用量段**（读取 `~/.codex/sessions/` rate limits），与 Claude 用量并列显示；并把原 `Usage` 拆成独立的 `HourlyUsage` / `WeeklyUsage` 两段，便于查看小时和周窗口的额度节奏。命名取自埃及鹰神 Horus（全视之眼），呼应 statusline 对 Claude + Codex 会话的全程监控。
+
 ## 截图
 
-![CCometixLine](assets/img1.png)
+![Horus](assets/img1.png)
 
 状态栏显示：模型 | 目录 | Git 分支状态 | 上下文窗口信息
 
@@ -43,24 +45,24 @@
 
 ```bash
 # 全局安装
-npm install -g @cometix/ccline
+npm install -g @pure-maple/horus
 
 # 或使用 yarn
-yarn global add @cometix/ccline
+yarn global add @pure-maple/horus
 
 # 或使用 pnpm
-pnpm add -g @cometix/ccline
+pnpm add -g @pure-maple/horus
 ```
 
 使用镜像源加速下载：
 ```bash
-npm install -g @cometix/ccline --registry https://registry.npmmirror.com
+npm install -g @pure-maple/horus --registry https://registry.npmmirror.com
 ```
 
 安装后：
-- ✅ 全局命令 `ccline` 可在任何地方使用
+- ✅ 全局命令 `horus` 可在任何地方使用
 - ⚙️ 按照下方提示进行配置以集成到 Claude Code
-- 🎨 运行 `ccline -c` 打开配置面板进行主题选择
+- 🎨 运行 `horus -c` 打开配置面板进行主题选择
 
 ### Claude Code 配置
 
@@ -71,22 +73,22 @@ npm install -g @cometix/ccline --registry https://registry.npmmirror.com
 {
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/ccline/ccline",
+    "command": "~/.claude/horus/horus",
     "padding": 0
   }
 }
 ```
 
 > **Windows 用户注意：** 从 Claude Code v2.1.47+ 开始，Windows 上支持 Unix 风格路径解析。`~` 符号会自动展开为您的用户主目录。**请勿使用 `%USERPROFILE%`** — 它在 v2.1.47+ 版本中不再可靠。
-> - 推荐：`~/.claude/ccline/ccline`（跨平台通用）
-> - 备选：`"ccline"`（需要 npm 全局安装）
+> - 推荐：`~/.claude/horus/horus`（跨平台通用）
+> - 备选：`"horus"`（需要 npm 全局安装）
 
 **后备方案 (npm 安装):**
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "ccline",
+    "command": "horus",
     "padding": 0
   }
 }
@@ -96,64 +98,64 @@ npm install -g @cometix/ccline --registry https://registry.npmmirror.com
 ### 更新
 
 ```bash
-npm update -g @cometix/ccline
+npm update -g @pure-maple/horus
 ```
 
 <details>
 <summary>手动安装（点击展开）</summary>
 
-或者从 [Releases](https://github.com/Haleclipse/CCometixLine/releases) 手动下载：
+或者从 [Releases](https://github.com/pure-maple/horus/releases) 手动下载：
 
 #### Linux
 
 #### 选项 1: 动态链接版本（推荐）
 ```bash
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-linux-x64.tar.gz
-tar -xzf ccline-linux-x64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64.tar.gz
+tar -xzf horus-linux-x64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 *系统要求: Ubuntu 22.04+, CentOS 9+, Debian 11+, RHEL 9+ (glibc 2.35+)*
 
 #### 选项 2: 静态链接版本（通用兼容）
 ```bash
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-linux-x64-static.tar.gz
-tar -xzf ccline-linux-x64-static.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64-static.tar.gz
+tar -xzf horus-linux-x64-static.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 *适用于任何 Linux 发行版（静态链接，无依赖）*
 
 #### macOS (Intel)
 
 ```bash  
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-macos-x64.tar.gz
-tar -xzf ccline-macos-x64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-x64.tar.gz
+tar -xzf horus-macos-x64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 
 #### macOS (Apple Silicon)
 
 ```bash
-mkdir -p ~/.claude/ccline  
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-macos-arm64.tar.gz
-tar -xzf ccline-macos-arm64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus  
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-arm64.tar.gz
+tar -xzf horus-macos-arm64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 
 #### Windows
 
 ```powershell
 # 创建目录并下载
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\ccline"
-Invoke-WebRequest -Uri "https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-windows-x64.zip" -OutFile "ccline-windows-x64.zip"
-Expand-Archive -Path "ccline-windows-x64.zip" -DestinationPath "."
-Move-Item "ccline.exe" "$env:USERPROFILE\.claude\ccline\"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\horus"
+Invoke-WebRequest -Uri "https://github.com/pure-maple/horus/releases/latest/download/horus-windows-x64.zip" -OutFile "horus-windows-x64.zip"
+Expand-Archive -Path "horus-windows-x64.zip" -DestinationPath "."
+Move-Item "horus.exe" "$env:USERPROFILE\.claude\horus\"
 ```
 
 </details>
@@ -161,10 +163,10 @@ Move-Item "ccline.exe" "$env:USERPROFILE\.claude\ccline\"
 ### 从源码构建
 
 ```bash
-git clone https://github.com/Haleclipse/CCometixLine.git
-cd CCometixLine
+git clone https://github.com/pure-maple/horus.git
+cd Horus
 cargo build --release
-cp target/release/ccometixline ~/.claude/ccline/ccline
+cp target/release/horus ~/.claude/horus/horus
 ```
 
 ## 使用
@@ -173,24 +175,24 @@ cp target/release/ccometixline ~/.claude/ccline/ccline
 
 ```bash
 # 临时使用指定主题（覆盖配置文件设置）
-ccline --theme cometix
-ccline --theme minimal
-ccline --theme gruvbox
-ccline --theme nord
-ccline --theme powerline-dark
+horus --theme cometix
+horus --theme minimal
+horus --theme gruvbox
+horus --theme nord
+horus --theme powerline-dark
 
-# 或使用 ~/.claude/ccline/themes/ 目录下的自定义主题
-ccline --theme my-custom-theme
+# 或使用 ~/.claude/horus/themes/ 目录下的自定义主题
+horus --theme my-custom-theme
 ```
 
 ### Claude Code 增强
 
 ```bash
 # 禁用上下文警告并启用详细模式
-ccline --patch /path/to/claude-code/cli.js
+horus --patch /path/to/claude-code/cli.js
 
 # 常见安装路径示例
-ccline --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
+horus --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
 ```
 
 ## 默认段落
@@ -215,12 +217,12 @@ ccline --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_mo
 
 ## 配置
 
-CCometixLine 支持通过 TOML 文件和交互式 TUI 进行完整配置：
+Horus 支持通过 TOML 文件和交互式 TUI 进行完整配置：
 
-- **配置文件**: `~/.claude/ccline/config.toml`
-- **交互式 TUI**: `ccline --config` 实时编辑配置并预览效果
-- **主题文件**: `~/.claude/ccline/themes/*.toml` 自定义主题文件
-- **自动初始化**: `ccline --init` 创建默认配置
+- **配置文件**: `~/.claude/horus/config.toml`
+- **交互式 TUI**: `horus --config` 实时编辑配置并预览效果
+- **主题文件**: `~/.claude/horus/themes/*.toml` 自定义主题文件
+- **自动初始化**: `horus --init` 创建默认配置
 
 ### 可用段落
 
@@ -234,7 +236,7 @@ CCometixLine 支持通过 TOML 文件和交互式 TUI 进行完整配置：
 
 ### 模型配置 (`models.toml`)
 
-文件位置：`~/.claude/ccline/models.toml`（首次运行时自动创建）
+文件位置：`~/.claude/horus/models.toml`（首次运行时自动创建）
 
 此文件配置模型 ID 的显示名称及其上下文窗口限制。Claude 模型（Sonnet、Opus、Haiku）会自动识别并提取版本号，此文件仅用于覆盖默认行为或添加第三方模型支持。
 
@@ -301,4 +303,4 @@ cargo build --release
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Haleclipse/CCometixLine&type=Date)](https://star-history.com/#Haleclipse/CCometixLine&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=pure-maple/horus&type=Date)](https://star-history.com/#pure-maple/horus&Date)

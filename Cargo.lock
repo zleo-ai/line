@@ -205,27 +205,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ccometixline"
-version = "1.1.2"
-dependencies = [
- "ansi-to-tui",
- "ansi_term",
- "chrono",
- "clap",
- "crossterm",
- "dirs",
- "ratatui",
- "regex",
- "semver",
- "serde",
- "serde_json",
- "toml",
- "tree-sitter",
- "tree-sitter-javascript",
- "ureq",
-]
-
-[[package]]
 name = "cfg-if"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -726,6 +705,27 @@ name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
+
+[[package]]
+name = "horus"
+version = "1.1.2"
+dependencies = [
+ "ansi-to-tui",
+ "ansi_term",
+ "chrono",
+ "clap",
+ "crossterm",
+ "dirs",
+ "ratatui",
+ "regex",
+ "semver",
+ "serde",
+ "serde_json",
+ "toml",
+ "tree-sitter",
+ "tree-sitter-javascript",
+ "ureq",
+]
 
 [[package]]
 name = "http"

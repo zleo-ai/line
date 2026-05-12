@@ -1,4 +1,4 @@
-# CCometixLine
+# Horus
 
 [English](README.md) | [中文](README.zh.md)
 
@@ -7,9 +7,11 @@ A high-performance Claude Code statusline tool written in Rust with Git integrat
 ![Language:Rust](https://img.shields.io/static/v1?label=Language&message=Rust&color=orange&style=flat-square)
 ![License:MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=blue&style=flat-square)
 
+> **Fork of [Haleclipse/CCometixLine](https://github.com/Haleclipse/CCometixLine)** — huge thanks to the original author for the elegant Rust statusline foundation. Horus diverges by adding **Codex usage tracking** (reads `~/.codex/sessions/` rate limits) alongside Claude usage, and splits the original `Usage` segment into separate `HourlyUsage` / `WeeklyUsage` views for finer-grained budget pacing. Named after the Egyptian falcon god — the All-Seeing Eye for your Claude + Codex sessions.
+
 ## Screenshots
 
-![CCometixLine](assets/img1.png)
+![Horus](assets/img1.png)
 
 The statusline shows: Model | Directory | Git Branch Status | Context Window Information
 
@@ -43,24 +45,24 @@ Install via npm (works on all platforms):
 
 ```bash
 # Install globally
-npm install -g @cometix/ccline
+npm install -g @pure-maple/horus
 
 # Or using yarn
-yarn global add @cometix/ccline
+yarn global add @pure-maple/horus
 
 # Or using pnpm
-pnpm add -g @cometix/ccline
+pnpm add -g @pure-maple/horus
 ```
 
 Use npm mirror for faster download:
 ```bash
-npm install -g @cometix/ccline --registry https://registry.npmmirror.com
+npm install -g @pure-maple/horus --registry https://registry.npmmirror.com
 ```
 
 After installation:
-- ✅ Global command `ccline` is available everywhere
+- ✅ Global command `horus` is available everywhere
 - ⚙️ Follow the configuration steps below to integrate with Claude Code
-- 🎨 Run `ccline -c` to open configuration panel for theme selection
+- 🎨 Run `horus -c` to open configuration panel for theme selection
 
 ### Claude Code Configuration
 
@@ -71,22 +73,22 @@ Add to your Claude Code `settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/ccline/ccline",
+    "command": "~/.claude/horus/horus",
     "padding": 0
   }
 }
 ```
 
 > **Note for Windows users:** Starting from Claude Code v2.1.47+, Unix-style path parsing is supported on Windows. The `~` symbol is automatically expanded to your user home directory. **Do not use `%USERPROFILE%`** - it no longer works reliably in v2.1.47+.
-> - Recommended: `~/.claude/ccline/ccline` (works on all platforms)
-> - Alternative: `"ccline"` (requires npm global installation)
+> - Recommended: `~/.claude/horus/horus` (works on all platforms)
+> - Alternative: `"horus"` (requires npm global installation)
 
 **Fallback (npm installation):**
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "ccline",
+    "command": "horus",
     "padding": 0
   }
 }
@@ -96,64 +98,64 @@ Add to your Claude Code `settings.json`:
 ### Update
 
 ```bash
-npm update -g @cometix/ccline
+npm update -g @pure-maple/horus
 ```
 
 <details>
 <summary>Manual Installation (Click to expand)</summary>
 
-Alternatively, download from [Releases](https://github.com/Haleclipse/CCometixLine/releases):
+Alternatively, download from [Releases](https://github.com/pure-maple/horus/releases):
 
 #### Linux
 
 #### Option 1: Dynamic Binary (Recommended)
 ```bash
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-linux-x64.tar.gz
-tar -xzf ccline-linux-x64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64.tar.gz
+tar -xzf horus-linux-x64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 *Requires: Ubuntu 22.04+, CentOS 9+, Debian 11+, RHEL 9+ (glibc 2.35+)*
 
 #### Option 2: Static Binary (Universal Compatibility)
 ```bash
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-linux-x64-static.tar.gz
-tar -xzf ccline-linux-x64-static.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64-static.tar.gz
+tar -xzf horus-linux-x64-static.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 *Works on any Linux distribution (static, no dependencies)*
 
 #### macOS (Intel)
 
 ```bash  
-mkdir -p ~/.claude/ccline
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-macos-x64.tar.gz
-tar -xzf ccline-macos-x64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-x64.tar.gz
+tar -xzf horus-macos-x64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 
 #### macOS (Apple Silicon)
 
 ```bash
-mkdir -p ~/.claude/ccline  
-wget https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-macos-arm64.tar.gz
-tar -xzf ccline-macos-arm64.tar.gz
-cp ccline ~/.claude/ccline/
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus  
+wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-arm64.tar.gz
+tar -xzf horus-macos-arm64.tar.gz
+cp horus ~/.claude/horus/
+chmod +x ~/.claude/horus/horus
 ```
 
 #### Windows
 
 ```powershell
 # Create directory and download
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\ccline"
-Invoke-WebRequest -Uri "https://github.com/Haleclipse/CCometixLine/releases/latest/download/ccline-windows-x64.zip" -OutFile "ccline-windows-x64.zip"
-Expand-Archive -Path "ccline-windows-x64.zip" -DestinationPath "."
-Move-Item "ccline.exe" "$env:USERPROFILE\.claude\ccline\"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\horus"
+Invoke-WebRequest -Uri "https://github.com/pure-maple/horus/releases/latest/download/horus-windows-x64.zip" -OutFile "horus-windows-x64.zip"
+Expand-Archive -Path "horus-windows-x64.zip" -DestinationPath "."
+Move-Item "horus.exe" "$env:USERPROFILE\.claude\horus\"
 ```
 
 </details>
@@ -161,18 +163,18 @@ Move-Item "ccline.exe" "$env:USERPROFILE\.claude\ccline\"
 ### Build from Source
 
 ```bash
-git clone https://github.com/Haleclipse/CCometixLine.git
-cd CCometixLine
+git clone https://github.com/pure-maple/horus.git
+cd Horus
 cargo build --release
 
 # Linux/macOS
-mkdir -p ~/.claude/ccline
-cp target/release/ccometixline ~/.claude/ccline/ccline
-chmod +x ~/.claude/ccline/ccline
+mkdir -p ~/.claude/horus
+cp target/release/horus ~/.claude/horus/horus
+chmod +x ~/.claude/horus/horus
 
 # Windows (PowerShell)
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\ccline"
-copy target\release\ccometixline.exe "$env:USERPROFILE\.claude\ccline\ccline.exe"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\horus"
+copy target\release\horus.exe "$env:USERPROFILE\.claude\horus\horus.exe"
 ```
 
 ## Usage
@@ -181,24 +183,24 @@ copy target\release\ccometixline.exe "$env:USERPROFILE\.claude\ccline\ccline.exe
 
 ```bash
 # Temporarily use specific theme (overrides config file)
-ccline --theme cometix
-ccline --theme minimal
-ccline --theme gruvbox
-ccline --theme nord
-ccline --theme powerline-dark
+horus --theme cometix
+horus --theme minimal
+horus --theme gruvbox
+horus --theme nord
+horus --theme powerline-dark
 
-# Or use custom theme files from ~/.claude/ccline/themes/
-ccline --theme my-custom-theme
+# Or use custom theme files from ~/.claude/horus/themes/
+horus --theme my-custom-theme
 ```
 
 ### Claude Code Enhancement
 
 ```bash
 # Disable context warnings and enable verbose mode
-ccline --patch /path/to/claude-code/cli.js
+horus --patch /path/to/claude-code/cli.js
 
 # Example for common installation
-ccline --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
+horus --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
 ```
 
 ## Default Segments
@@ -223,12 +225,12 @@ Token usage percentage based on transcript analysis with context limit tracking.
 
 ## Configuration
 
-CCometixLine supports full configuration via TOML files and interactive TUI:
+Horus supports full configuration via TOML files and interactive TUI:
 
-- **Configuration file**: `~/.claude/ccline/config.toml`
-- **Interactive TUI**: `ccline --config` for real-time editing with preview
-- **Theme files**: `~/.claude/ccline/themes/*.toml` for custom themes
-- **Automatic initialization**: `ccline --init` creates default configuration
+- **Configuration file**: `~/.claude/horus/config.toml`
+- **Interactive TUI**: `horus --config` for real-time editing with preview
+- **Theme files**: `~/.claude/horus/themes/*.toml` for custom themes
+- **Automatic initialization**: `horus --init` creates default configuration
 
 ### Available Segments
 
@@ -242,7 +244,7 @@ Supported segments: Directory, Git, Model, Usage, Time, Cost, OutputStyle
 
 ### Model Configuration (`models.toml`)
 
-Location: `~/.claude/ccline/models.toml` (auto-created on first run)
+Location: `~/.claude/horus/models.toml` (auto-created on first run)
 
 This file configures how model IDs are displayed and their context window limits. Claude models (Sonnet, Opus, Haiku) are automatically recognized with version extraction — you only need this file for overrides or third-party models.
 
@@ -312,4 +314,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Haleclipse/CCometixLine&type=Date)](https://star-history.com/#Haleclipse/CCometixLine&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=pure-maple/horus&type=Date)](https://star-history.com/#pure-maple/horus&Date)
