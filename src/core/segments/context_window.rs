@@ -71,9 +71,17 @@ impl Segment for ContextWindowSegment {
         metadata.insert("limit".to_string(), context_limit.to_string());
         metadata.insert("model".to_string(), input.model.id.clone());
 
+        let compact_count = count_compacts(&input.transcript_path);
+        let secondary = if compact_count > 0 {
+            metadata.insert("compacts".to_string(), compact_count.to_string());
+            format!("󰮯{}", compact_count)
+        } else {
+            String::new()
+        };
+
         Some(SegmentData {
             primary: format!("{} · {} tokens", percentage_display, tokens_display),
-            secondary: String::new(),
+            secondary,
             metadata,
         })
     }
@@ -81,6 +89,31 @@ impl Segment for ContextWindowSegment {
     fn id(&self) -> SegmentId {
         SegmentId::ContextWindow
     }
+}
+
+/// Count the number of "summary" entries in the transcript (each = one compact).
+fn count_compacts<P: AsRef<Path>>(transcript_path: P) -> u32 {
+    let path = transcript_path.as_ref();
+    let file = match fs::File::open(path) {
+        Ok(f) => f,
+        Err(_) => return 0,
+    };
+    let reader = BufReader::new(file);
+    let mut count = 0u32;
+    for line in reader.lines() {
+        if let Ok(line) = line {
+            let trimmed = line.trim();
+            if trimmed.is_empty() {
+                continue;
+            }
+            if let Ok(entry) = serde_json::from_str::<TranscriptEntry>(trimmed) {
+                if entry.r#type.as_deref() == Some("summary") {
+                    count += 1;
+                }
+            }
+        }
+    }
+    count
 }
 
 fn parse_transcript_usage<P: AsRef<Path>>(transcript_path: P) -> Option<u32> {
