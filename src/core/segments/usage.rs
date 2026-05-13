@@ -450,9 +450,18 @@ impl Segment for HourlyUsageSegment {
         let pace = UsageSegment::calc_budget_pace(data.five_hour_resets_at.as_deref(), Duration::hours(5));
         let reset = UsageSegment::format_reset_hour(data.five_hour_resets_at.as_deref());
 
-        let primary = match pace {
-            Some(p) => format!("{}%({}%)", percent, p),
-            None => format!("{}%", percent),
+        let cells = super::read_bar_cells(SegmentId::HourlyUsage);
+        let primary = if cells > 0 {
+            let bar = super::render_progress_bar(percent, cells);
+            match pace {
+                Some(p) => format!("{} {}% (pace {}%)", bar, percent, p),
+                None => format!("{} {}%", bar, percent),
+            }
+        } else {
+            match pace {
+                Some(p) => format!("{}%({}%)", percent, p),
+                None => format!("{}%", percent),
+            }
         };
         let secondary = if !reset.is_empty() { reset } else { String::new() };
 
@@ -482,9 +491,18 @@ impl Segment for WeeklyUsageSegment {
         let ttl = UsageSegment::calc_time_to_limit(data.seven_day_util, data.seven_day_resets_at.as_deref(), Duration::days(7));
         let reset = UsageSegment::format_reset_date_hour(data.seven_day_resets_at.as_deref());
 
-        let mut primary = match pace {
-            Some(p) => format!("{}%({}%)", percent, p),
-            None => format!("{}%", percent),
+        let cells = super::read_bar_cells(SegmentId::WeeklyUsage);
+        let mut primary = if cells > 0 {
+            let bar = super::render_progress_bar(percent, cells);
+            match pace {
+                Some(p) => format!("{} {}% (pace {}%)", bar, percent, p),
+                None => format!("{} {}%", bar, percent),
+            }
+        } else {
+            match pace {
+                Some(p) => format!("{}%({}%)", percent, p),
+                None => format!("{}%", percent),
+            }
         };
         if let Some(ref t) = ttl {
             primary.push_str(&format!(" {}", t));

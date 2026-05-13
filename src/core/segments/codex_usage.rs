@@ -171,13 +171,31 @@ impl Segment for CodexUsageSegment {
         let primary_pct = rl.primary_used.round() as u8;
         let secondary_pct = rl.secondary_used.round() as u8;
 
-        let primary_part = match primary_pace {
-            Some(p) => format!("{} {}%({}%)", primary_label, primary_pct, p),
-            None => format!("{} {}%", primary_label, primary_pct),
+        let cells = super::read_bar_cells(SegmentId::CodexUsage);
+
+        let primary_part = if cells > 0 {
+            let bar = super::render_progress_bar(primary_pct, cells);
+            match primary_pace {
+                Some(p) => format!("{} {} {}% (pace {}%)", primary_label, bar, primary_pct, p),
+                None => format!("{} {} {}%", primary_label, bar, primary_pct),
+            }
+        } else {
+            match primary_pace {
+                Some(p) => format!("{} {}%({}%)", primary_label, primary_pct, p),
+                None => format!("{} {}%", primary_label, primary_pct),
+            }
         };
-        let mut secondary_part = match secondary_pace {
-            Some(p) => format!("{} {}%({}%)", secondary_label, secondary_pct, p),
-            None => format!("{} {}%", secondary_label, secondary_pct),
+        let mut secondary_part = if cells > 0 {
+            let bar = super::render_progress_bar(secondary_pct, cells);
+            match secondary_pace {
+                Some(p) => format!("{} {} {}% (pace {}%)", secondary_label, bar, secondary_pct, p),
+                None => format!("{} {} {}%", secondary_label, bar, secondary_pct),
+            }
+        } else {
+            match secondary_pace {
+                Some(p) => format!("{} {}%({}%)", secondary_label, secondary_pct, p),
+                None => format!("{} {}%", secondary_label, secondary_pct),
+            }
         };
         if let Some(ref t) = secondary_ttl {
             secondary_part.push_str(&format!(" {}", t));
