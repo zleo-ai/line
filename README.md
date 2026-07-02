@@ -45,18 +45,18 @@ Install via npm (works on all platforms):
 
 ```bash
 # Install globally
-npm install -g @pure-maple/horus
+npm install -g @zleo-ai/horus
 
 # Or using yarn
-yarn global add @pure-maple/horus
+yarn global add @zleo-ai/horus
 
 # Or using pnpm
-pnpm add -g @pure-maple/horus
+pnpm add -g @zleo-ai/horus
 ```
 
 Use npm mirror for faster download:
 ```bash
-npm install -g @pure-maple/horus --registry https://registry.npmmirror.com
+npm install -g @zleo-ai/horus --registry https://registry.npmmirror.com
 ```
 
 After installation:
@@ -98,20 +98,20 @@ Add to your Claude Code `settings.json`:
 ### Update
 
 ```bash
-npm update -g @pure-maple/horus
+npm update -g @zleo-ai/horus
 ```
 
 <details>
 <summary>Manual Installation (Click to expand)</summary>
 
-Alternatively, download from [Releases](https://github.com/pure-maple/horus/releases):
+Alternatively, download from [Releases](https://github.com/zleo-ai/horus/releases):
 
 #### Linux
 
 #### Option 1: Dynamic Binary (Recommended)
 ```bash
 mkdir -p ~/.claude/horus
-wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64.tar.gz
+wget https://github.com/zleo-ai/horus/releases/latest/download/horus-linux-x64.tar.gz
 tar -xzf horus-linux-x64.tar.gz
 cp horus ~/.claude/horus/
 chmod +x ~/.claude/horus/horus
@@ -121,7 +121,7 @@ chmod +x ~/.claude/horus/horus
 #### Option 2: Static Binary (Universal Compatibility)
 ```bash
 mkdir -p ~/.claude/horus
-wget https://github.com/pure-maple/horus/releases/latest/download/horus-linux-x64-static.tar.gz
+wget https://github.com/zleo-ai/horus/releases/latest/download/horus-linux-x64-static.tar.gz
 tar -xzf horus-linux-x64-static.tar.gz
 cp horus ~/.claude/horus/
 chmod +x ~/.claude/horus/horus
@@ -132,7 +132,7 @@ chmod +x ~/.claude/horus/horus
 
 ```bash  
 mkdir -p ~/.claude/horus
-wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-x64.tar.gz
+wget https://github.com/zleo-ai/horus/releases/latest/download/horus-macos-x64.tar.gz
 tar -xzf horus-macos-x64.tar.gz
 cp horus ~/.claude/horus/
 chmod +x ~/.claude/horus/horus
@@ -142,7 +142,7 @@ chmod +x ~/.claude/horus/horus
 
 ```bash
 mkdir -p ~/.claude/horus  
-wget https://github.com/pure-maple/horus/releases/latest/download/horus-macos-arm64.tar.gz
+wget https://github.com/zleo-ai/horus/releases/latest/download/horus-macos-arm64.tar.gz
 tar -xzf horus-macos-arm64.tar.gz
 cp horus ~/.claude/horus/
 chmod +x ~/.claude/horus/horus
@@ -153,7 +153,7 @@ chmod +x ~/.claude/horus/horus
 ```powershell
 # Create directory and download
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\horus"
-Invoke-WebRequest -Uri "https://github.com/pure-maple/horus/releases/latest/download/horus-windows-x64.zip" -OutFile "horus-windows-x64.zip"
+Invoke-WebRequest -Uri "https://github.com/zleo-ai/horus/releases/latest/download/horus-windows-x64.zip" -OutFile "horus-windows-x64.zip"
 Expand-Archive -Path "horus-windows-x64.zip" -DestinationPath "."
 Move-Item "horus.exe" "$env:USERPROFILE\.claude\horus\"
 ```
@@ -163,7 +163,7 @@ Move-Item "horus.exe" "$env:USERPROFILE\.claude\horus\"
 ### Build from Source
 
 ```bash
-git clone https://github.com/pure-maple/horus.git
+git clone https://github.com/zleo-ai/horus.git
 cd Horus
 cargo build --release
 
@@ -314,4 +314,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=pure-maple/horus&type=Date)](https://star-history.com/#pure-maple/horus&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=zleo-ai/horus&type=Date)](https://star-history.com/#zleo-ai/horus&Date)
